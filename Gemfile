@@ -60,4 +60,5 @@ gem 'bootstrap-material-design', '0.1.4'
 
 #for heroku
 gem 'rails_12factor'
+gem 'pg'
 
