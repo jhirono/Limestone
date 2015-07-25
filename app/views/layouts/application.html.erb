@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>Limestone</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="/search">ジムを探す</a></li>
+            <li role="presentation"><a href="">ルートを登録</a></li>
+            <% if user_signed_in? %>
+            <li role="presentation"><a href="/users/<%=current_user.id%>">マイページ</a></li>
+            <li role="presentation"><%= link_to "ログアウト", destroy_user_session_path, method: :delete%></li>
+            <% end %>
+          </ul>
+        </nav>
+        <a href="/"><%= image_tag("onecolor-A-002.png", size: "163x40", alt: "limestone") %></a>
+      </div>
+
+      <% if user_signed_in? %>
+      <% else %>
+      <div class="jumbotron">
+        <p class="lead">クライミングの記録をみんなで共有して強くなるサイトです。<br>目指せ!! 段クライマー、5.12 クライマー!!</p>
+        <p>
+          <a class="btn btn btn-primary" href="/users/sign_up" role="button">アカウント作成</a>
+          <a class="btn btn btn-primary" href="/users/sign_in" role="button">サインイン</a>
+        </p>
+      </div>
+      <% end %>
+
+<!--       <div class="alert alert-info" role="alert">
+        <p>クライミングの記録をみんなで共有して強くなるサイトです。まずはアカウント作成してください。</p>
+      </div> -->
+
+      <%= yield %>
+
+      <footer class="footer">
+        <p>&copy; Company 2014</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+            <% if notice %>
+              <p class="alert alert-success"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+              <p class="alert alert-danger"><%= alert %></p>
+            <% end %>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+
+<%= @indoorkadai.indoor.name%>
+<br>
+
+<%= @indoorkadai.color %><%= @indoorkadai.routename %>
+<br>
+
+<% @results.each do |myresult|%>
+<%= myresult.review%>
+<%end%>
+
+<br>
+<% @indoorkadai.results.each do |result| %>
+<%= result.review%>
+<%end%>

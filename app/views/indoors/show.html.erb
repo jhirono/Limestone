@@ -1,0 +1,81 @@
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5><%= @indoor.name%> で登録された課題</h5>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>壁の名前</th>
+            <th>グレード</th>
+            <th>ルート名</th>
+            <th>今ある課題？</th>
+            <th>記録をつける</th>
+            <th>課題を更新</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @indoor.indoorkadais.each do |indoorkadai| %>
+            <tr>
+              <td><%= indoorkadai.wallname%></td>
+              <td><%= indoorkadai.grade%></td>
+              <td><a href="/indoorkadais/<%=indoorkadai.id%>"><%= indoorkadai.color%> <%= indoorkadai.routename%></a></td>
+              <td><%= indoorkadai.newflag%></td>
+              <td><a href="/indoorkadais/<%=indoorkadai.id%>/entry"><span class="label label-primary">記録する</span></a></td>
+              <td><a href="/indoorkadais/<%=indoorkadai.id%>/edit"><span class="label label-success">更新する</span></a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>リストに無い課題は登録しよう</h5>
+      </div>
+      <div class="panel-body">
+        <div class="input-group">
+          <%= form_for(@indoorkadai, url: indoor_indoorkadais_path(@indoor.id)) do |f| %>
+            <%= f.hidden_field :indoor_id, value: "#{@indoor.id}" %>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">壁の名前　　</span>
+              <%= f.text_field :wallname, placeholder: "例：バルジ、110度", class: "form-control"%>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">ルートの色　</span>
+              <%= f.text_field :routename, placeholder: "例：キミドリ", class: "form-control"%>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">ルート名　　</span>
+              <%= f.text_field :routename, placeholder: "例：棒、＋", class: "form-control"%>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">グレード　　</span>
+              <%= f.select :grade, ["4D", "3D", "2D", "1D", "1Q", "2Q", "3Q", "4Q", "5Q", "6Q", "7-10Q"], {}, class: "form-control"%>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">今ある課題ならチェック <%= f.check_box(:newflag, {:checked => true}, "true", "false")%></span>
+            </div>
+            <div class="input-group">
+              <%= f.file_field :kadaipic %>
+            </div>
+            <%= f.submit "課題を登録する"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item active"><%=@indoor.name%></li>
+      <li class="list-group-item">電話：<%=@indoor.tele%></li>
+      <li class="list-group-item">アクセス：<%=@indoor.access%></li>
+      <li class="list-group-item">営業時間：<%=@indoor.open_hour%></li>
+      <li class="list-group-item">住所：<%=@indoor.address%></li>
+      <li class="list-group-item"><%=@indoor.homepage%></li>
+    </ul>
+  </div>
+
+</div>

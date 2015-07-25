@@ -1,0 +1,42 @@
+jhirono-mbp:climb_reco jhirono$ rake routes
+                  Prefix Verb   URI Pattern                                     Controller#Action
+        new_user_session GET    /users/sign_in(.:format)                        devise/sessions#new
+            user_session POST   /users/sign_in(.:format)                        devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)                       devise/sessions#destroy
+           user_password POST   /users/password(.:format)                       devise/passwords#create
+       new_user_password GET    /users/password/new(.:format)                   devise/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)                  devise/passwords#edit
+                         PATCH  /users/password(.:format)                       devise/passwords#update
+                         PUT    /users/password(.:format)                       devise/passwords#update
+cancel_user_registration GET    /users/cancel(.:format)                         devise/registrations#cancel
+       user_registration POST   /users(.:format)                                devise/registrations#create
+   new_user_registration GET    /users/sign_up(.:format)                        devise/registrations#new
+  edit_user_registration GET    /users/edit(.:format)                           devise/registrations#edit
+                         PATCH  /users(.:format)                                devise/registrations#update
+                         PUT    /users(.:format)                                devise/registrations#update
+                         DELETE /users(.:format)                                devise/registrations#destroy
+                    root GET    /                                               top#index
+                  search GET    /search(.:format)                               top#search
+                         GET    /indoorkadais/:indoorkadai_id/entry(.:format)   indoorkadais#entry
+                favorite PATCH  /favorites/:id(.:format)                        favorites#update
+                         PUT    /favorites/:id(.:format)                        favorites#update
+                         DELETE /favorites/:id(.:format)                        favorites#destroy
+     indoorkadai_results POST   /indoorkadais/:indoorkadai_id/results(.:format) results#create
+             edit_result GET    /results/:id/edit(.:format)                     results#edit
+                  result GET    /results/:id(.:format)                          results#show
+                         PATCH  /results/:id(.:format)                          results#update
+                         PUT    /results/:id(.:format)                          results#update
+     indoor_indoorkadais POST   /indoors/:indoor_id/indoorkadais(.:format)      indoorkadais#create
+        edit_indoorkadai GET    /indoorkadais/:id/edit(.:format)                indoorkadais#edit
+             indoorkadai GET    /indoorkadais/:id(.:format)                     indoorkadais#show
+                         PATCH  /indoorkadais/:id(.:format)                     indoorkadais#update
+                         PUT    /indoorkadais/:id(.:format)                     indoorkadais#update
+                 indoors GET    /indoors(.:format)                              indoors#index
+                         POST   /indoors(.:format)                              indoors#create
+              new_indoor GET    /indoors/new(.:format)                          indoors#new
+             edit_indoor GET    /indoors/:id/edit(.:format)                     indoors#edit
+                  indoor GET    /indoors/:id(.:format)                          indoors#show
+                         PATCH  /indoors/:id(.:format)                          indoors#update
+                         PUT    /indoors/:id(.:format)                          indoors#update
+                         DELETE /indoors/:id(.:format)                          indoors#destroy
+                    user GET    /users/:id(.:format)                            users#show

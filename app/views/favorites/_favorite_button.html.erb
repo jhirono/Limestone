@@ -1,0 +1,7 @@
+
+
+<% if @favorite? %>
+  <%= link_to "お気に入り", favorite_path(@favorite.id), method: :delete, class: 'btn btn-xs btn-warning'%>
+<% else %>
+  <%= link_to "お気に入り", favorite_path(@favorite.id), method: :update, class: 'btn btn-xs btn-warning'%>
+<% end %>
