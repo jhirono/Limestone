@@ -8,8 +8,8 @@
 
 require "csv"
  
-indoors_csv = CSV.readlines("db/table/indoors.csv")
-indoors_csv.shift
-indoors_csv.each do |row|
-  Indoor.create(:name => row[1], :image_url => row[2], :address => row[3], :access => row[4], :tele => row[5], :open_hour => row[6], :price => row[7], :rental => row[8], :parking => row[9], :lesson => row[10], :kid => row[11], :homepage => row[12], :holiday => row[15], :prefecture => row[16])
+users_csv = CSV.readlines("db/table/users.csv")
+users_csv.shift
+users_csv.each do |row|
+  Indoor.create(:email => row[1], :image_url => row[2], :address => row[3], :access => row[4], :tele => row[5], :open_hour => row[6], :price => row[7], :rental => row[8], :parking => row[9], :lesson => row[10], :kid => row[11], :homepage => row[12], :holiday => row[15], :prefecture => row[16])
 end

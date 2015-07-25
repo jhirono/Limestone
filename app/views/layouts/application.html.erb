@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
-  <title>Limestone</title>
+  <title>Limestone | クライミング記録をつけて強くなろう |</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -19,7 +19,6 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/search">ジムを探す</a></li>
-            <li role="presentation"><a href="">ルートを登録</a></li>
             <% if user_signed_in? %>
             <li role="presentation"><a href="/users/<%=current_user.id%>">マイページ</a></li>
             <li role="presentation"><%= link_to "ログアウト", destroy_user_session_path, method: :delete%></li>
