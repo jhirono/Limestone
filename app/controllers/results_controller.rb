@@ -5,12 +5,16 @@ class ResultsController < ApplicationController
   end
 
   def edit
+    @result = Result.find(params[:id])
   end
 
   def show
   end
 
   def update
+    @result = Result.find(params[:id])
+    @result.update(create_results)
+    redirect_to controller: :indoorkadais, action: :show, id: @result.indoorkadai.id
   end
 
   private

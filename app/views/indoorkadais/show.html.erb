@@ -1,17 +1,72 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>あなたのトライ状況</h5>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>タイプ</th>
+            <th>トライ回数</th>
+            <th>10段階評価</th>
+            <th>コメント</th>
+            <th>更新</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @results.each do |myresult|%>
+            <tr>
+              <td><%= myresult.climbtype%></td>
+              <td><%= myresult.trial%></td>
+              <td>後で実装</td>
+              <td><%= myresult.review%></td>
+              <td>
+                <% if current_user.id == myresult.user.id%>
+                  <a href="/results/<%=myresult.id%>/edit"><span class="label label-success">更新する</span></a>
+                <% else %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<%= @indoorkadai.indoor.name%>
-<br>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>みんなのトライ状況</h5>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>タイプ</th>
+            <th>トライ回数</th>
+            <th>10段階評価</th>
+            <th>コメント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @indoorkadai.results.order("updated_at DESC").each do |result| %>
+            <tr>
+              <td><%= result.user.username%></td>
+              <td><%= result.climbtype%></td>
+              <td><%= result.trial%></td>
+              <td>後で実装</td>
+              <td><%= result.review%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<%= @indoorkadai.color %><%= @indoorkadai.routename %>
-<br>
-
-
-
-<% @results.each do |myresult|%>
-<%= myresult.review%>
-<%end%>
-
-<br>
-<% @indoorkadai.results.each do |result| %>
-<%= result.review%>
-<%end%>
+  </div>
+  <div class="col-md-4">
+    <ul class="list-group">
+      <li class="list-group-item active"><%=@indoorkadai.wallname%>壁 <%=@indoorkadai.color%> <%=@indoorkadai.routename%> <%=@indoorkadai.grade%></li>
+      <li class="list-group-item"><img src="<%=@indoorkadai.kadaipic%>" alt="<%=@indoorkadai.color%><%=@indoorkadai.routename%>" style="height:200px; width:100%"></li>
+      <li class="list-group-item"><a href="/indoors/<%=@indoorkadai.indoor.id%>"><%=@indoorkadai.indoor.name%></a></li>
+    </ul>
+  </div>
+</div>

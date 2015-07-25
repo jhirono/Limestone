@@ -20,8 +20,8 @@ class IndoorkadaisController < ApplicationController
   end
 
   def show
-    @indoorkadai = Indoorkadai.find(params[:id])
-    @results      = Result.where(user_id: current_user.id, indoorkadai_id: @indoorkadai.id)
+    @indoorkadai = Indoorkadai.order('updated_at DESC').find(params[:id])
+    @results      = Result.where(user_id: current_user.id, indoorkadai_id: @indoorkadai.id).order('updated_at DESC')
   end
 
   private
