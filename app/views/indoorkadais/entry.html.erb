@@ -10,7 +10,7 @@
             <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">トライ回数</span>
-              <%= f.text_field :trial, placeholder: "5", class: "form-control"%>
+              <%= f.number_field :trial, placeholder: "5", class: "form-control", min: "0"%>
             </div>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">スタイル　</span>
