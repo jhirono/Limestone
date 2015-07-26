@@ -17,6 +17,7 @@
     <div class="container">
       <div class="header clearfix">
         <nav>
+        <a href="/", class="nav nav-pills pull-left"><%= image_tag("onecolor-A-002.png", size: "163x40", alt: "limestone") %></a>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/search">ジムを探す</a></li>
             <% if user_signed_in? %>
@@ -25,7 +26,6 @@
             <% end %>
           </ul>
         </nav>
-        <a href="/"><%= image_tag("onecolor-A-002.png", size: "163x40", alt: "limestone") %></a>
       </div>
 
       <% if user_signed_in? %>
