@@ -3,14 +3,14 @@
         <h5>あなたのトライ状況を更新しよう</h5>
       </div>
       <div class="panel-body">
-        <div class="input-group">
+        <div class="form-horizontal" role="form">
           <%= form_for(@result, url: indoorkadai_results_path(@indoorkadai.id)) do |f| %>
             <%= f.hidden_field :indoorkadai_id, value: "#{@indoorkadai.id}" %>
             <%= f.hidden_field :indoor_id, value: "#{@indoorkadai.indoor_id}" %>
             <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">トライ回数</span>
-              <%= f.text_field :trial, placeholder: "5回", class: "form-control"%>
+              <%= f.text_field :trial, placeholder: "5", class: "form-control"%>
             </div>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">スタイル　</span>
@@ -18,7 +18,7 @@
             </div>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">感想　　　</span>
-              <%= f.text_field :review, placeholder: "感想を書いてください", class: "form-control"%>
+              <%= f.text_field :review, placeholder: "感想を書いてください", class: "form-control", style: "width: 100%; height: 60px"%>
             </div>
             <%= f.submit "トライ状況を登録する"%>
           <% end %>

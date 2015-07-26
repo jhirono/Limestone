@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col-md-8">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h5><%= @indoor.name%> で登録された課題</h5>
       </div>
@@ -11,20 +11,51 @@
             <th>壁の名前</th>
             <th>グレード</th>
             <th>ルート名</th>
-            <th>今ある課題？</th>
+            <!-- <th>今ある課題？</th> -->
+            <th>10段階評価</th>
             <th>記録をつける</th>
-            <th>課題を更新</th>
+            <!-- <th>課題を更新</th> -->
           </tr>
         </thead>
         <tbody>
-          <% @indoor.indoorkadais.each do |indoorkadai| %>
+          <% @kadais.each do |indoorkadai| %>
             <tr>
               <td><%= indoorkadai.wallname%></td>
               <td><%= indoorkadai.grade%></td>
               <td><a href="/indoorkadais/<%=indoorkadai.id%>"><%= indoorkadai.color%> <%= indoorkadai.routename%></a></td>
-              <td><%= indoorkadai.newflag%></td>
+              <!-- <td><%= indoorkadai.newflag%></td> -->
+              <td>未実装</td>
               <td><a href="/indoorkadais/<%=indoorkadai.id%>/entry"><span class="label label-primary">記録する</span></a></td>
-              <td><a href="/indoorkadais/<%=indoorkadai.id%>/edit"><span class="label label-success">更新する</span></a></td>
+              <!-- <td><a href="/indoorkadais/<%=indoorkadai.id%>/edit"><span class="label label-success">更新する</span></a></td> -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5><%= @indoor.name%> の過去の課題</h5>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>壁の名前</th>
+            <th>グレード</th>
+            <th>ルート名</th>
+            <!-- <th>今ある課題？</th> -->
+            <th>記録をつける</th>
+            <!-- <th>課題を更新</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <% @oldkadais.each do |indoorkadai| %>
+            <tr>
+              <td><%= indoorkadai.wallname%></td>
+              <td><%= indoorkadai.grade%></td>
+              <td><a href="/indoorkadais/<%=indoorkadai.id%>"><%= indoorkadai.color%> <%= indoorkadai.routename%></a></td>
+              <!-- <td><%= indoorkadai.newflag%></td> -->
+              <td><a href="/indoorkadais/<%=indoorkadai.id%>/entry"><span class="label label-primary">記録する</span></a></td>
+              <!-- <td><a href="/indoorkadais/<%=indoorkadai.id%>/edit"><span class="label label-success">更新する</span></a></td> -->
             </tr>
           <% end %>
         </tbody>
@@ -33,12 +64,12 @@
   </div>
 
   <div class="col-md-4">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h5>リストに無い課題は登録しよう</h5>
       </div>
       <div class="panel-body">
-        <div class="input-group">
+        <div class="form-horizontal" role="form">
           <%= form_for(@indoorkadai, url: indoor_indoorkadais_path(@indoor.id)) do |f| %>
             <%= f.hidden_field :indoor_id, value: "#{@indoor.id}" %>
             <div class="input-group">
@@ -58,9 +89,11 @@
               <%= f.select :grade, ["4D", "3D", "2D", "1D", "1Q", "2Q", "3Q", "4Q", "5Q", "6Q", "7-10Q"], {}, class: "form-control"%>
             </div>
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">今ある課題ならチェック <%= f.check_box(:newflag, {:checked => true}, "true", "false")%></span>
+              <span class="input-group-addon" id="basic-addon1">今ある課題？</span>
+              <%= f.check_box(:newflag, {:checked => true}, "true", "false")%>
             </div>
             <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">画像を撮ろう</span>
               <%= f.file_field :kadaipic %>
             </div>
             <%= f.submit "課題を登録する"%>
@@ -69,7 +102,8 @@
       </div>
     </div>
     <ul class="list-group">
-      <li class="list-group-item active"><%=@indoor.name%></li>
+      <li class="list-group-item"><img src="<%=@indoor.image_url%>" alt="<%=@indoor.name%>" style="height:200px; width:100%"></li>
+      <li class="list-group-item"><%=@indoor.name%></li>
       <li class="list-group-item">電話：<%=@indoor.tele%></li>
       <li class="list-group-item">アクセス：<%=@indoor.access%></li>
       <li class="list-group-item">営業時間：<%=@indoor.open_hour%></li>
